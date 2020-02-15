@@ -7,8 +7,8 @@ public class Order {
     String customerAddress;
     List<Goods> goodsList;
 
-    public Order(String cName, String customerAddress, List<Goods> goodsList) {
-        this.customerName = cName;
+    public Order(String customerName, String customerAddress, List<Goods> goodsList) {
+        this.customerName = customerName;
         this.customerAddress = customerAddress;
         this.goodsList = goodsList;
     }
@@ -23,25 +23,15 @@ public class Order {
 
     public String printGoodsList(){
         StringBuilder output = new StringBuilder();
-        goodsList.stream().forEach(goods -> {
-            output.append(goods.getDetail());
-        });
+        goodsList.forEach(goods -> output.append(goods.getDetail()));
         return output.toString();
     }
 
     public double getTotalSalesTax(){
-        double totalSalesTax = 0;
-        for (Goods goods : goodsList) {
-            totalSalesTax += goods.getSalesTax();
-        }
-        return totalSalesTax;
+        return goodsList.stream().mapToDouble(Goods::getSalesTax).sum();
     }
 
     public double getTotalAmount(){
-        double totalAmount = 0;
-        for (Goods goods : goodsList) {
-            totalAmount += goods.totalAmount() + goods.getSalesTax();
-        }
-        return totalAmount;
+        return goodsList.stream().mapToDouble(goods -> goods.totalAmount() + goods.getSalesTax()).sum();
     }
 }

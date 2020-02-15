@@ -16,21 +16,28 @@ public class OrderReceipt {
 
     public String printReceipt() {
         StringBuilder output = new StringBuilder();
-        printHeader(output);
-        printBody(output);
+        output.append(buildHeader());
+        output.append(buildBody());
+        output.append(buildTail());
         return output.toString();
     }
 
-    private void printBody(StringBuilder output) {
-        output.append(order.printGoodsList());
-        output.append("Sales Tax").append('\t').append(order.getTotalSalesTax());
-        output.append("Total Amount").append('\t').append(order.getTotalAmount());
+    private StringBuilder buildHeader() {
+        StringBuilder header = new StringBuilder();
+        header.append("======Printing Orders======\n");
+        header.append(order.getCustomerName());
+        header.append(order.getCustomerAddress());
+        return header;
     }
 
-    private void printHeader(StringBuilder output) {
-        output.append("======Printing Orders======\n");
-        output.append(order.getCustomerName());
-        output.append(order.getCustomerAddress());
+    private String buildBody() {
+        return order.printGoodsList();
+    }
 
+    private StringBuilder buildTail() {
+        StringBuilder tail = new StringBuilder();
+        tail.append("Sales Tax").append('\t').append(order.getTotalSalesTax()).append("\n");
+        tail.append("Total Amount").append('\t').append(order.getTotalAmount());
+        return tail;
     }
 }
