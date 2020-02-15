@@ -10,4 +10,10 @@ public class FibonacciCalculatorTest {
         long result = FibonacciCalculator.calculate(1);
         Assert.assertEquals(1, result);
     }
+
+    @Test
+    public void should_return_1_when_calculate_given_position_is_2() {
+        long result = FibonacciCalculator.calculate(2);
+        Assert.assertEquals(1, result);
+    }
 }
