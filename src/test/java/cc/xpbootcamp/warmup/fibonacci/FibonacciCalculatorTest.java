@@ -28,4 +28,10 @@ public class FibonacciCalculatorTest {
         long result = FibonacciCalculator.calculate(7);
         Assert.assertEquals(13, result);
     }
+
+    @Test
+    public void should_return_12586269025_when_calculate_given_position_is_50() {
+        long result = FibonacciCalculator.calculate(50);
+        Assert.assertEquals(12586269025L, result);
+    }
 }
