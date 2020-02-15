@@ -22,18 +22,9 @@ public class OrderReceipt {
     }
 
     private void printBody(StringBuilder output) {
-        double totSalesTx = 0d;
-        double tot = 0d;
-        for (Goods goods : order.getLineItems()) {
-            output.append(goods.getDetail());
-            double salesTax = goods.totalAmount() * .10;
-            totSalesTx += salesTax;
-            tot += goods.totalAmount() + salesTax;
-        }
-
-        output.append("Sales Tax").append('\t').append(totSalesTx);
-
-        output.append("Total Amount").append('\t').append(tot);
+        output.append(order.printGoodsList());
+        output.append("Sales Tax").append('\t').append(order.getTotalSalesTax());
+        output.append("Total Amount").append('\t').append(order.getTotalAmount());
     }
 
     private void printHeader(StringBuilder output) {

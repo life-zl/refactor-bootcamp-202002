@@ -40,4 +40,8 @@ public class Goods {
 		output.append('\n');
 		return output.toString();
 	}
+
+	public double getSalesTax() {
+		return totalAmount() * .10;
+	}
 }

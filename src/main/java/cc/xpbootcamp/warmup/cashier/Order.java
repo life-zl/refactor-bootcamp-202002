@@ -21,8 +21,27 @@ public class Order {
         return customerAddress;
     }
 
-    public List<Goods> getLineItems() {
-        return goodsList;
+    public String printGoodsList(){
+        StringBuilder output = new StringBuilder();
+        goodsList.stream().forEach(goods -> {
+            output.append(goods.getDetail());
+        });
+        return output.toString();
     }
 
+    public double getTotalSalesTax(){
+        double totalSalesTax = 0;
+        for (Goods goods : goodsList) {
+            totalSalesTax += goods.getSalesTax();
+        }
+        return totalSalesTax;
+    }
+
+    public double getTotalAmount(){
+        double totalAmount = 0;
+        for (Goods goods : goodsList) {
+            totalAmount += goods.totalAmount() + goods.getSalesTax();
+        }
+        return totalAmount;
+    }
 }
