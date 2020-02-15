@@ -16,4 +16,10 @@ public class FibonacciCalculatorTest {
         long result = FibonacciCalculator.calculate(2);
         Assert.assertEquals(1, result);
     }
+
+    @Test
+    public void should_return_2_when_calculate_given_position_is_3() {
+        long result = FibonacciCalculator.calculate(3);
+        Assert.assertEquals(2, result);
+    }
 }
