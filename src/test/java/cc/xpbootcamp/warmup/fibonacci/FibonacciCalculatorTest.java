@@ -22,4 +22,10 @@ public class FibonacciCalculatorTest {
         long result = FibonacciCalculator.calculate(3);
         Assert.assertEquals(2, result);
     }
+
+    @Test
+    public void should_return_13_when_calculate_given_position_is_7() {
+        long result = FibonacciCalculator.calculate(7);
+        Assert.assertEquals(13, result);
+    }
 }
