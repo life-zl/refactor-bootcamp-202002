@@ -27,4 +27,17 @@ public class Goods {
     double totalAmount() {
         return price * quantity;
     }
+
+    public String getDetail(){
+		StringBuilder output = new StringBuilder();
+		output.append(getDescription());
+		output.append('\t');
+		output.append(getPrice());
+		output.append('\t');
+		output.append(getQuantity());
+		output.append('\t');
+		output.append(totalAmount());
+		output.append('\n');
+		return output.toString();
+	}
 }

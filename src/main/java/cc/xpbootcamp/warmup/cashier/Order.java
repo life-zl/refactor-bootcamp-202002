@@ -24,4 +24,5 @@ public class Order {
     public List<Goods> getLineItems() {
         return goodsList;
     }
+
 }

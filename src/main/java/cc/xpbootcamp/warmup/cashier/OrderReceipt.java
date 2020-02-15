@@ -16,32 +16,30 @@ public class OrderReceipt {
 
     public String printReceipt() {
         StringBuilder output = new StringBuilder();
+        printHeader(output);
+        printBody(output);
+        return output.toString();
+    }
 
-        output.append("======Printing Orders======\n");
-
-        output.append(order.getCustomerName());
-        output.append(order.getCustomerAddress());
+    private void printBody(StringBuilder output) {
         double totSalesTx = 0d;
         double tot = 0d;
         for (Goods goods : order.getLineItems()) {
-            output.append(goods.getDescription());
-            output.append('\t');
-            output.append(goods.getPrice());
-            output.append('\t');
-            output.append(goods.getQuantity());
-            output.append('\t');
-            output.append(goods.totalAmount());
-            output.append('\n');
-
+            output.append(goods.getDetail());
             double salesTax = goods.totalAmount() * .10;
             totSalesTx += salesTax;
-
             tot += goods.totalAmount() + salesTax;
         }
 
         output.append("Sales Tax").append('\t').append(totSalesTx);
 
         output.append("Total Amount").append('\t').append(tot);
-        return output.toString();
+    }
+
+    private void printHeader(StringBuilder output) {
+        output.append("======Printing Orders======\n");
+        output.append(order.getCustomerName());
+        output.append(order.getCustomerAddress());
+
     }
 }
