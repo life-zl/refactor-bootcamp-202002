@@ -3,17 +3,13 @@ package cc.xpbootcamp.warmup.cashier;
 import java.util.List;
 
 public class OrderRefactor {
-    String customerName;
-    String customerAddress;
     List<Goods> goodsList;
     double sumAmount;
     double totalSalesTax;
     double totalDiscount;
 
 
-    public OrderRefactor(String customerName, String customerAddress, List<Goods> goodsList) {
-        this.customerName = customerName;
-        this.customerAddress = customerAddress;
+    public OrderRefactor(List<Goods> goodsList) {
         this.goodsList = goodsList;
         this.sumAmount = getSum();
         this.totalSalesTax = getTotalSalesTax();

@@ -3,22 +3,22 @@ package cc.xpbootcamp.warmup.cashier;
 import java.text.DecimalFormat;
 
 public class Goods {
-	private String desc;
+	private String title;
 	private double price;
 	private int quantity;
 
 	private DecimalFormat df = new DecimalFormat("#.00");
 
 
-	public Goods(String desc, double price, int quantity) {
+	public Goods(String title, double price, int quantity) {
 		super();
-		this.desc = desc;
+		this.title = title;
 		this.price = price;
 		this.quantity = quantity;
 	}
 
-	public String getDescription() {
-		return desc;
+	public String getTitle() {
+		return title;
 	}
 
 	public double getPrice() {
@@ -35,7 +35,7 @@ public class Goods {
 
     public String getDetail(){
 		StringBuilder output = new StringBuilder();
-		output.append(getDescription());
+		output.append(getTitle());
 		output.append(", ");
 		output.append(df.format(getPrice()));
 		output.append(" x ");
