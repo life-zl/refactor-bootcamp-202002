@@ -1,20 +1,23 @@
 package cc.xpbootcamp.warmup.cashier;
 
-import java.text.DecimalFormat;
 import java.util.List;
 
 public class OrderRefactor {
     String customerName;
     String customerAddress;
     List<GoodsRefactor> goodsList;
-
-    private DecimalFormat df = new DecimalFormat("#.00");
+    double sumAmount;
+    double totalSalesTax;
+    double totalDiscount;
 
 
     public OrderRefactor(String customerName, String customerAddress, List<GoodsRefactor> goodsList) {
         this.customerName = customerName;
         this.customerAddress = customerAddress;
         this.goodsList = goodsList;
+        this.sumAmount = getSum();
+        this.totalSalesTax = getTotalSalesTax();
+        this.totalDiscount = getTotalDiscount();
     }
 
     public String printGoodsList() {
@@ -23,32 +26,25 @@ public class OrderRefactor {
         return output.toString();
     }
 
-    public double getTotalSalesTax() {
-        return getSum() * .10;
-    }
-
-    public String getTotalSalesTaxStr() {
-        return df.format(getTotalSalesTax());
-    }
-
-    public String getTotalDiscountStr() {
-        return df.format(getTotalDiscount());
-    }
-
-    public String getTotalAmountStrWithDiscount() {
-        return df.format(getSum() + getTotalSalesTax() - getTotalDiscount());
-    }
-
-    public String getTotalAmountStr() {
-        return df.format(getSum() + getTotalSalesTax());
-    }
-
     private double getSum() {
         return goodsList.stream().mapToDouble(GoodsRefactor::totalAmount).sum();
     }
 
+    public double getTotalSalesTax() {
+        return sumAmount * .10;
+    }
+
     private double getTotalDiscount() {
-        return (getSum() + getTotalSalesTax()) * (1 - .98);
+        return (sumAmount + totalSalesTax) * (1 - .98);
+    }
+
+
+    public double getTotalAmountWithNoDiscount() {
+        return sumAmount + totalSalesTax;
+    }
+
+    public double getTotalAmountWithDiscount() {
+        return sumAmount + totalSalesTax - totalDiscount;
     }
 
 }
