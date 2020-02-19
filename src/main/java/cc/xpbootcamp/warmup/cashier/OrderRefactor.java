@@ -17,17 +17,38 @@ public class OrderRefactor {
         this.goodsList = goodsList;
     }
 
-    public String printGoodsList(){
+    public String printGoodsList() {
         StringBuilder output = new StringBuilder();
         goodsList.forEach(goods -> output.append(goods.getDetail()));
         return output.toString();
     }
 
-    public String getTotalSalesTax(){
-        return df.format(goodsList.stream().mapToDouble(GoodsRefactor::getSalesTax).sum());
+    public double getTotalSalesTax() {
+        return getSum() * .10;
     }
 
-    public String getTotalAmount(){
-        return df.format(goodsList.stream().mapToDouble(goods -> goods.totalAmount() + goods.getSalesTax()).sum());
+    public String getTotalSalesTaxStr() {
+        return df.format(getTotalSalesTax());
     }
+
+    public String getTotalDiscountStr() {
+        return df.format(getTotalDiscount());
+    }
+
+    public String getTotalAmountStrWithDiscount() {
+        return df.format(getSum() + getTotalSalesTax() - getTotalDiscount());
+    }
+
+    public String getTotalAmountStr() {
+        return df.format(getSum() + getTotalSalesTax());
+    }
+
+    private double getSum() {
+        return goodsList.stream().mapToDouble(GoodsRefactor::totalAmount).sum();
+    }
+
+    private double getTotalDiscount() {
+        return (getSum() + getTotalSalesTax()) * (1 - .98);
+    }
+
 }

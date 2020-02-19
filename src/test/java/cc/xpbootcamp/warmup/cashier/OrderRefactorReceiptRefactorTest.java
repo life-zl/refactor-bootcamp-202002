@@ -12,9 +12,8 @@ public class OrderRefactorReceiptRefactorTest {
     @Test
     void shouldPrintMondayOrderListOnOrder() {
         List<GoodsRefactor> lineItems = new ArrayList<GoodsRefactor>() {{
-            add(new GoodsRefactor("milk", 10.00, 2));
-            add(new GoodsRefactor("biscuits", 5.00, 5));
-            add(new GoodsRefactor("chocolate", 20.00, 1));
+            add(new GoodsRefactor("巧克力", 21.50, 2));
+            add(new GoodsRefactor("小白菜", 10.00, 1));
         }};
         OrderReceiptRefactor receipt = new OrderReceiptRefactor(new OrderRefactor(null, null, lineItems));
 

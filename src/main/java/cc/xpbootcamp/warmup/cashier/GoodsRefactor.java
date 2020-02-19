@@ -46,7 +46,4 @@ public class GoodsRefactor {
 		return output.toString();
 	}
 
-	public double getSalesTax() {
-		return totalAmount() * .10;
-	}
 }
