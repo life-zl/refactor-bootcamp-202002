@@ -2,12 +2,14 @@ package cc.xpbootcamp.warmup.cashier;
 
 import java.text.DecimalFormat;
 
+import static cc.xpbootcamp.warmup.cashier.constants.FieldConstant.NUMBER_PATTERN;
+
 public class Goods {
 	private String title;
 	private double price;
 	private int quantity;
 
-	private DecimalFormat df = new DecimalFormat("#.00");
+	private DecimalFormat df = new DecimalFormat(NUMBER_PATTERN);
 
 
 	public Goods(String title, double price, int quantity) {

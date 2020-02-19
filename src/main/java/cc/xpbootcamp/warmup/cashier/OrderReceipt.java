@@ -16,7 +16,7 @@ import static cc.xpbootcamp.warmup.cashier.constants.FieldConstant.*;
 public class OrderReceipt {
     private OrderRefactor orderRefactor;
 
-    private DecimalFormat df = new DecimalFormat("#.00");
+    private DecimalFormat df = new DecimalFormat(NUMBER_PATTERN);
 
 
     public OrderReceipt(OrderRefactor orderRefactor) {
