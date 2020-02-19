@@ -1,5 +1,7 @@
 package cc.xpbootcamp.warmup.cashier;
 
+import java.text.DecimalFormat;
+
 /**
  * OrderReceipt prints the details of order including customer name, address, description, quantity,
  * price and amount. It also calculates the sales tax @ 10% and prints as part
@@ -8,10 +10,10 @@ package cc.xpbootcamp.warmup.cashier;
  *
  */
 public class OrderReceiptRefactor {
-    private Order order;
+    private OrderRefactor orderRefactor;
 
-    public OrderReceiptRefactor(Order order) {
-        this.order = order;
+    public OrderReceiptRefactor(OrderRefactor orderRefactor) {
+        this.orderRefactor = orderRefactor;
     }
 
     public String printReceipt() {
@@ -30,14 +32,14 @@ public class OrderReceiptRefactor {
     }
 
     private String buildBody() {
-        return order.printGoodsList();
+        return orderRefactor.printGoodsList();
     }
 
     private StringBuilder buildFooter() {
         StringBuilder footer = new StringBuilder();
         footer.append("------------------\n");
-        footer.append("Sales Tax").append('\t').append(order.getTotalSalesTax()).append("\n");
-        footer.append("Total Amount").append('\t').append(order.getTotalAmount());
+        footer.append("税额： ").append(orderRefactor.getTotalSalesTax()).append("\n");
+        footer.append("总价： ").append(orderRefactor.getTotalAmount());
         return footer;
     }
 }
