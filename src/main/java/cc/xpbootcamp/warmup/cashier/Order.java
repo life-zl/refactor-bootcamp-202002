@@ -2,14 +2,14 @@ package cc.xpbootcamp.warmup.cashier;
 
 import java.util.List;
 
-public class OrderRefactor {
+public class Order {
     List<Goods> goodsList;
     double sumAmount;
     double totalSalesTax;
     double totalDiscount;
 
 
-    public OrderRefactor(List<Goods> goodsList) {
+    public Order(List<Goods> goodsList) {
         this.goodsList = goodsList;
         this.sumAmount = getSum();
         this.totalSalesTax = getTotalSalesTax();

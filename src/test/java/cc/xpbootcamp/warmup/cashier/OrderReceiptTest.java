@@ -15,7 +15,7 @@ public class OrderReceiptTest {
             add(new Goods("巧克力", 21.50, 2));
             add(new Goods("小白菜", 10.00, 1));
         }};
-        OrderReceipt receipt = new OrderReceipt(new OrderRefactor(goodsItem));
+        OrderReceipt receipt = new OrderReceipt(new Order(goodsItem));
 
         String output = receipt.printReceipt();
 

@@ -14,13 +14,13 @@ import static cc.xpbootcamp.warmup.cashier.constants.FieldConstant.*;
  * total sales tax) and prints it.
  */
 public class OrderReceipt {
-    private OrderRefactor orderRefactor;
+    private Order order;
 
     private DecimalFormat df = new DecimalFormat(NUMBER_PATTERN);
 
 
-    public OrderReceipt(OrderRefactor orderRefactor) {
-        this.orderRefactor = orderRefactor;
+    public OrderReceipt(Order order) {
+        this.order = order;
     }
 
     public String printReceipt() {
@@ -42,18 +42,18 @@ public class OrderReceipt {
 
 
     private String buildBody() {
-        return orderRefactor.printGoodsList();
+        return order.printGoodsList();
     }
 
     private StringBuilder buildFooter() {
         StringBuilder footer = new StringBuilder();
         footer.append("------------------\n");
-        footer.append(TOTAL_TAX_TEXT).append(EMPTY_STRING).append(df.format(orderRefactor.totalSalesTax)).append("\n");
+        footer.append(TOTAL_TAX_TEXT).append(EMPTY_STRING).append(df.format(order.totalSalesTax)).append("\n");
         if (DateUtil.getWeekOfDate(Calendar.getInstance()).equals(WEDNESDAY)) {
-            footer.append(TOTAL_DISCOUNT_TEXT).append(EMPTY_STRING).append(df.format(orderRefactor.totalDiscount)).append("\n");
-            footer.append(TOTAL_AMOUNT_TEXT).append(EMPTY_STRING).append(df.format(orderRefactor.getTotalAmountWithDiscount()));
+            footer.append(TOTAL_DISCOUNT_TEXT).append(EMPTY_STRING).append(df.format(order.totalDiscount)).append("\n");
+            footer.append(TOTAL_AMOUNT_TEXT).append(EMPTY_STRING).append(df.format(order.getTotalAmountWithDiscount()));
         } else {
-            footer.append(TOTAL_AMOUNT_TEXT).append(EMPTY_STRING).append(df.format(orderRefactor.getTotalAmountWithNoDiscount()));
+            footer.append(TOTAL_AMOUNT_TEXT).append(EMPTY_STRING).append(df.format(order.getTotalAmountWithNoDiscount()));
         }
         return footer;
     }
