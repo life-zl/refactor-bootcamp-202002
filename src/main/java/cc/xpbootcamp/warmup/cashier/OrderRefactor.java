@@ -5,13 +5,13 @@ import java.util.List;
 public class OrderRefactor {
     String customerName;
     String customerAddress;
-    List<GoodsRefactor> goodsList;
+    List<Goods> goodsList;
     double sumAmount;
     double totalSalesTax;
     double totalDiscount;
 
 
-    public OrderRefactor(String customerName, String customerAddress, List<GoodsRefactor> goodsList) {
+    public OrderRefactor(String customerName, String customerAddress, List<Goods> goodsList) {
         this.customerName = customerName;
         this.customerAddress = customerAddress;
         this.goodsList = goodsList;
@@ -27,7 +27,7 @@ public class OrderRefactor {
     }
 
     private double getSum() {
-        return goodsList.stream().mapToDouble(GoodsRefactor::totalAmount).sum();
+        return goodsList.stream().mapToDouble(Goods::totalAmount).sum();
     }
 
     public double getTotalSalesTax() {

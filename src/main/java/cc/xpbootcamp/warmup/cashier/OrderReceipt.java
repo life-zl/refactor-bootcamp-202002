@@ -1,43 +1,60 @@
 package cc.xpbootcamp.warmup.cashier;
 
+import cc.xpbootcamp.warmup.cashier.utils.DateUtil;
+
+import java.text.DecimalFormat;
+import java.util.Calendar;
+
+import static cc.xpbootcamp.warmup.cashier.constants.FieldConstant.*;
+
 /**
  * OrderReceipt prints the details of order including customer name, address, description, quantity,
  * price and amount. It also calculates the sales tax @ 10% and prints as part
  * of order. It computes the total order amount (amount of individual lineItems +
  * total sales tax) and prints it.
- *
  */
 public class OrderReceipt {
-    private Order order;
+    private OrderRefactor orderRefactor;
 
-    public OrderReceipt(Order order) {
-        this.order = order;
+    private DecimalFormat df = new DecimalFormat("#.00");
+
+
+    public OrderReceipt(OrderRefactor orderRefactor) {
+        this.orderRefactor = orderRefactor;
     }
 
     public String printReceipt() {
         StringBuilder output = new StringBuilder();
         output.append(buildHeader());
         output.append(buildBody());
-        output.append(buildTail());
+        output.append(buildFooter());
         return output.toString();
     }
 
     private StringBuilder buildHeader() {
         StringBuilder header = new StringBuilder();
-        header.append("======Printing Orders======\n");
-        header.append(order.getCustomerName());
-        header.append(order.getCustomerAddress());
+        header.append("====== 老王超市,值得信赖 ======")
+                .append(BLANK_LINE)
+                .append(DateUtil.getDateInfo())
+                .append(BLANK_LINE);
         return header;
     }
 
+
     private String buildBody() {
-        return order.printGoodsList();
+        return orderRefactor.printGoodsList();
     }
 
-    private StringBuilder buildTail() {
-        StringBuilder tail = new StringBuilder();
-        tail.append("Sales Tax").append('\t').append(order.getTotalSalesTax()).append("\n");
-        tail.append("Total Amount").append('\t').append(order.getTotalAmount());
-        return tail;
+    private StringBuilder buildFooter() {
+        StringBuilder footer = new StringBuilder();
+        footer.append("------------------\n");
+        footer.append(TOTAL_TAX_TEXT).append(EMPTY_STRING).append(df.format(orderRefactor.totalSalesTax)).append("\n");
+        if (DateUtil.getWeekOfDate(Calendar.getInstance()).equals(WEDNESDAY)) {
+            footer.append(TOTAL_DISCOUNT_TEXT).append(EMPTY_STRING).append(df.format(orderRefactor.totalDiscount)).append("\n");
+            footer.append(TOTAL_AMOUNT_TEXT).append(EMPTY_STRING).append(df.format(orderRefactor.getTotalAmountWithDiscount()));
+        } else {
+            footer.append(TOTAL_AMOUNT_TEXT).append(EMPTY_STRING).append(df.format(orderRefactor.getTotalAmountWithNoDiscount()));
+        }
+        return footer;
     }
 }

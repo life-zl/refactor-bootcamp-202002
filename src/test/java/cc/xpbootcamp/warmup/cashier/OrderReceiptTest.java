@@ -5,38 +5,25 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.core.StringContains.containsString;
+import static org.junit.Assert.assertThat;
 
-class OrderReceiptTest {
+public class OrderReceiptTest {
     @Test
-    void shouldPrintCustomerInformationOnOrder() {
-        Order order = new Order("Mr X", "Chicago, 60601", new ArrayList<Goods>());
-        OrderReceipt receipt = new OrderReceipt(order);
-
-        String output = receipt.printReceipt();
-
-
-        assertThat(output, containsString("Mr X"));
-        assertThat(output, containsString("Chicago, 60601"));
-    }
-
-    @Test
-    public void shouldPrintLineItemAndSalesTaxInformation() {
+    void shouldPrintMondayOrderListOnOrder() {
         List<Goods> lineItems = new ArrayList<Goods>() {{
-            add(new Goods("milk", 10.0, 2));
-            add(new Goods("biscuits", 5.0, 5));
-            add(new Goods("chocolate", 20.0, 1));
+            add(new Goods("巧克力", 21.50, 2));
+            add(new Goods("小白菜", 10.00, 1));
         }};
-        OrderReceipt receipt = new OrderReceipt(new Order(null, null, lineItems));
+        OrderReceipt receipt = new OrderReceipt(new OrderRefactor(null, null, lineItems));
 
         String output = receipt.printReceipt();
 
-        assertThat(output, containsString("milk\t10.0\t2\t20.0\n"));
-        assertThat(output, containsString("biscuits\t5.0\t5\t25.0\n"));
-        assertThat(output, containsString("chocolate\t20.0\t1\t20.0\n"));
-        assertThat(output, containsString("Sales Tax\t6.5"));
-        assertThat(output, containsString("Total Amount\t71.5"));
+        assertThat(output, containsString("税额 5.30"));
+        assertThat(output, containsString("折扣 1.17"));
+        assertThat(output, containsString("总价 57.13"));
+
     }
+
 
 }

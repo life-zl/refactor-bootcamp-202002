@@ -1,9 +1,14 @@
 package cc.xpbootcamp.warmup.cashier;
 
+import java.text.DecimalFormat;
+
 public class Goods {
 	private String desc;
 	private double price;
 	private int quantity;
+
+	private DecimalFormat df = new DecimalFormat("#.00");
+
 
 	public Goods(String desc, double price, int quantity) {
 		super();
@@ -31,17 +36,14 @@ public class Goods {
     public String getDetail(){
 		StringBuilder output = new StringBuilder();
 		output.append(getDescription());
-		output.append('\t');
-		output.append(getPrice());
-		output.append('\t');
+		output.append(", ");
+		output.append(df.format(getPrice()));
+		output.append(" x ");
 		output.append(getQuantity());
-		output.append('\t');
-		output.append(totalAmount());
+		output.append(", ");
+		output.append(df.format(totalAmount()));
 		output.append('\n');
 		return output.toString();
 	}
 
-	public double getSalesTax() {
-		return totalAmount() * .10;
-	}
 }
