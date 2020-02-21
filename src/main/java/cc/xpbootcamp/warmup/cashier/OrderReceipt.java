@@ -52,7 +52,7 @@ public class OrderReceipt {
 
 
     private String buildBody() {
-        return order.printGoodsList();
+        return Cashier.printGoodsList(order);
     }
 
     private StringBuilder buildFooter() {

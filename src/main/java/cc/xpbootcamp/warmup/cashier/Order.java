@@ -16,14 +16,12 @@ public class Order {
         this.totalDiscount = getTotalDiscount();
     }
 
-    public String printGoodsList() {
-        StringBuilder output = new StringBuilder();
-        lineItemList.forEach(lineItem -> output.append(lineItem.getDetail()));
-        return output.toString();
+    public List<LineItem> getLineItemList() {
+        return lineItemList;
     }
 
     private double getSum() {
-        return lineItemList.stream().mapToDouble(LineItem::totalAmount).sum();
+        return lineItemList.stream().mapToDouble(LineItem::getTotalAmount).sum();
     }
 
     public double getTotalSalesTax() {

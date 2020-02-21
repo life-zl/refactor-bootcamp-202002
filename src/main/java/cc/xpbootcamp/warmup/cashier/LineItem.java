@@ -1,5 +1,7 @@
 package cc.xpbootcamp.warmup.cashier;
 
+import cc.xpbootcamp.warmup.cashier.constants.FieldConstant;
+
 import java.text.DecimalFormat;
 
 import static cc.xpbootcamp.warmup.cashier.constants.FieldConstant.NUMBER_PATTERN;
@@ -8,8 +10,6 @@ public class LineItem {
 	private String title;
 	private double price;
 	private int quantity;
-
-	private DecimalFormat df = new DecimalFormat(NUMBER_PATTERN);
 
 
 	public LineItem(String title, double price, int quantity) {
@@ -31,21 +31,10 @@ public class LineItem {
 		return quantity;
 	}
 
-    double totalAmount() {
+    double getTotalAmount() {
         return price * quantity;
     }
 
-    public String getDetail(){
-		StringBuilder output = new StringBuilder();
-		output.append(getTitle());
-		output.append(", ");
-		output.append(df.format(getPrice()));
-		output.append(" x ");
-		output.append(getQuantity());
-		output.append(", ");
-		output.append(df.format(totalAmount()));
-		output.append('\n');
-		return output.toString();
-	}
+
 
 }
