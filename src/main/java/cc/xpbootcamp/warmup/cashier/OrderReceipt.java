@@ -48,9 +48,9 @@ public class OrderReceipt {
     private StringBuilder buildFooter() {
         StringBuilder footer = new StringBuilder();
         footer.append("------------------\n");
-        footer.append(TOTAL_TAX_TEXT).append(EMPTY_STRING).append(df.format(order.totalSalesTax)).append("\n");
+        footer.append(TOTAL_TAX_TEXT).append(EMPTY_STRING).append(df.format(order.getTotalSalesTax())).append("\n");
         if (DateUtil.getWeekOfDate(Calendar.getInstance()).equals(WEDNESDAY)) {
-            footer.append(TOTAL_DISCOUNT_TEXT).append(EMPTY_STRING).append(df.format(order.totalDiscount)).append("\n");
+            footer.append(TOTAL_DISCOUNT_TEXT).append(EMPTY_STRING).append(df.format(order.getTotalDiscount())).append("\n");
             footer.append(TOTAL_AMOUNT_TEXT).append(EMPTY_STRING).append(df.format(order.getTotalAmountWithDiscount()));
         } else {
             footer.append(TOTAL_AMOUNT_TEXT).append(EMPTY_STRING).append(df.format(order.getTotalAmountWithNoDiscount()));

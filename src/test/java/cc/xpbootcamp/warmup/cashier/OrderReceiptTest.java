@@ -11,17 +11,18 @@ import static org.junit.Assert.assertThat;
 public class OrderReceiptTest {
     @Test
     void shouldPrintMondayOrderListOnOrder() {
-        List<Goods> goodsItem = new ArrayList<Goods>() {{
-            add(new Goods("巧克力", 21.50, 2));
-            add(new Goods("小白菜", 10.00, 1));
+        List<LineItem> lineItemItem = new ArrayList<LineItem>() {{
+            add(new LineItem("巧克力", 21.50, 2));
+            add(new LineItem("小白菜", 10.00, 1));
         }};
-        OrderReceipt receipt = new OrderReceipt(new Order(goodsItem));
+        OrderReceipt receipt = new OrderReceipt(new Order(lineItemItem));
 
         String output = receipt.printReceipt();
 
+        System.out.println(output);
+
         assertThat(output, containsString("税额 5.30"));
-        assertThat(output, containsString("折扣 1.17"));
-        assertThat(output, containsString("总价 57.13"));
+        assertThat(output, containsString("总价 58.30"));
     }
 
 

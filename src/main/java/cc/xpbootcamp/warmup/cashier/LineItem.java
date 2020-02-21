@@ -4,7 +4,7 @@ import java.text.DecimalFormat;
 
 import static cc.xpbootcamp.warmup.cashier.constants.FieldConstant.NUMBER_PATTERN;
 
-public class Goods {
+public class LineItem {
 	private String title;
 	private double price;
 	private int quantity;
@@ -12,7 +12,7 @@ public class Goods {
 	private DecimalFormat df = new DecimalFormat(NUMBER_PATTERN);
 
 
-	public Goods(String title, double price, int quantity) {
+	public LineItem(String title, double price, int quantity) {
 		super();
 		this.title = title;
 		this.price = price;

@@ -3,14 +3,14 @@ package cc.xpbootcamp.warmup.cashier;
 import java.util.List;
 
 public class Order {
-    List<Goods> goodsList;
-    double sumAmount;
-    double totalSalesTax;
-    double totalDiscount;
+    private List<LineItem> lineItemList;
+    private double sumAmount;
+    private double totalSalesTax;
+    private double totalDiscount;
 
 
-    public Order(List<Goods> goodsList) {
-        this.goodsList = goodsList;
+    public Order(List<LineItem> lineItemList) {
+        this.lineItemList = lineItemList;
         this.sumAmount = getSum();
         this.totalSalesTax = getTotalSalesTax();
         this.totalDiscount = getTotalDiscount();
@@ -18,19 +18,19 @@ public class Order {
 
     public String printGoodsList() {
         StringBuilder output = new StringBuilder();
-        goodsList.forEach(goods -> output.append(goods.getDetail()));
+        lineItemList.forEach(lineItem -> output.append(lineItem.getDetail()));
         return output.toString();
     }
 
     private double getSum() {
-        return goodsList.stream().mapToDouble(Goods::totalAmount).sum();
+        return lineItemList.stream().mapToDouble(LineItem::totalAmount).sum();
     }
 
     public double getTotalSalesTax() {
         return sumAmount * .10;
     }
 
-    private double getTotalDiscount() {
+    public double getTotalDiscount() {
         return (sumAmount + totalSalesTax) * (1 - .98);
     }
 
