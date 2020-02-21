@@ -41,18 +41,9 @@ public class OrderReceipt {
         return header;
     }
 
-    private static String getDateInfo() {
-        Calendar now = Calendar.getInstance();
-        return String.format(FieldConstant.DATE_PATTERN,
-                now.get(Calendar.YEAR),
-                now.get(Calendar.MONTH) + 1,
-                now.get(Calendar.DAY_OF_MONTH),
-                DateUtil.getWeekOfDate());
-    }
-
 
     private String buildBody() {
-        return Cashier.printGoodsList(order);
+        return buildGoodsListText(order);
     }
 
     private StringBuilder buildFooter() {
@@ -67,4 +58,25 @@ public class OrderReceipt {
         }
         return footer;
     }
+
+    private static String getDateInfo() {
+        Calendar now = Calendar.getInstance();
+        return String.format(FieldConstant.DATE_PATTERN,
+                now.get(Calendar.YEAR),
+                now.get(Calendar.MONTH) + 1,
+                now.get(Calendar.DAY_OF_MONTH),
+                DateUtil.getWeekOfDate());
+    }
+
+    private static String getDetail(LineItem lineItem){
+        return String.format(FieldConstant.LINE_PATTERN,
+                lineItem.getTitle(), lineItem.getPrice(), lineItem.getQuantity(), lineItem.getTotalAmount());
+    }
+
+    private static String buildGoodsListText(Order order) {
+        StringBuilder output = new StringBuilder();
+        order.getLineItemList().forEach(lineItem -> output.append(getDetail(lineItem)));
+        return output.toString();
+    }
+
 }
