@@ -30,7 +30,7 @@ ext.libs = [
 ]
 
 test {
-    useJUnitPlatform()
+    useJUnit()
     testLogging {
         events "passed", "skipped", "failed"
         afterSuite { desc, result ->
@@ -47,7 +47,9 @@ test {
 }
 
 dependencies {
-    testCompile libs.junit5
+    testCompile 'junit:junit:4.12'
     testCompile 'org.assertj:assertj-core:3.10.0'
     testCompile 'org.hamcrest:hamcrest-core:2.1'
+    testCompile group: 'org.powermock', name: 'powermock-module-junit4', version: '2.0.5'
+    testCompile group: 'org.powermock', name: 'powermock-api-mockito2', version: '2.0.5'
 }

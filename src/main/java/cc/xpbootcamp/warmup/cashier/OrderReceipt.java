@@ -1,8 +1,10 @@
 package cc.xpbootcamp.warmup.cashier;
 
+import cc.xpbootcamp.warmup.cashier.constants.FieldConstant;
 import cc.xpbootcamp.warmup.cashier.utils.DateUtil;
 
 import java.text.DecimalFormat;
+import java.util.Calendar;
 
 import static cc.xpbootcamp.warmup.cashier.constants.FieldConstant.*;
 
@@ -34,9 +36,18 @@ public class OrderReceipt {
         StringBuilder header = new StringBuilder();
         header.append("====== 老王超市,值得信赖 ======")
                 .append(BLANK_LINE)
-                .append(DateUtil.getDateInfo())
+                .append(getDateInfo())
                 .append(BLANK_LINE);
         return header;
+    }
+
+    private static String getDateInfo() {
+        Calendar now = Calendar.getInstance();
+        return String.format(FieldConstant.DATE_PATTERN,
+                now.get(Calendar.YEAR),
+                now.get(Calendar.MONTH) + 1,
+                now.get(Calendar.DAY_OF_MONTH),
+                DateUtil.getWeekOfDate());
     }
 
 
