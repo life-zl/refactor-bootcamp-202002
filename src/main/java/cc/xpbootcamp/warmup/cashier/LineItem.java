@@ -1,40 +1,33 @@
 package cc.xpbootcamp.warmup.cashier;
 
-import cc.xpbootcamp.warmup.cashier.constants.FieldConstant;
-
-import java.text.DecimalFormat;
-
-import static cc.xpbootcamp.warmup.cashier.constants.FieldConstant.NUMBER_PATTERN;
-
 public class LineItem {
-	private String title;
-	private double price;
-	private int quantity;
+    private String title;
+    private double price;
+    private int quantity;
 
 
-	public LineItem(String title, double price, int quantity) {
-		super();
-		this.title = title;
-		this.price = price;
-		this.quantity = quantity;
-	}
+    public LineItem(String title, double price, int quantity) {
+        super();
+        this.title = title;
+        this.price = price;
+        this.quantity = quantity;
+    }
 
-	public String getTitle() {
-		return title;
-	}
+    public String getTitle() {
+        return title;
+    }
 
-	public double getPrice() {
-		return price;
-	}
+    public double getPrice() {
+        return price;
+    }
 
-	public int getQuantity() {
-		return quantity;
-	}
+    public int getQuantity() {
+        return quantity;
+    }
 
     double getTotalAmount() {
         return price * quantity;
     }
-
 
 
 }
