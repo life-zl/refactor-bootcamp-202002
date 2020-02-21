@@ -2,7 +2,10 @@ package cc.xpbootcamp.warmup.cashier.utils;
 
 import cc.xpbootcamp.warmup.cashier.constants.FieldConstant;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 public class DateUtil {
 
@@ -12,14 +15,11 @@ public class DateUtil {
                 now.get(Calendar.YEAR),
                 now.get(Calendar.MONTH) + 1,
                 now.get(Calendar.DAY_OF_MONTH),
-                getWeekOfDate(now));
+                getWeekOfDate());
     }
 
-    public static String getWeekOfDate(Calendar date) {
-        String[] weekDays = {"星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"};
-        int w = date.get(Calendar.DAY_OF_WEEK) - 1;
-        if (w < 0)
-            w = 0;
-        return weekDays[w];
+    public static String getWeekOfDate() {
+        SimpleDateFormat sdf = new SimpleDateFormat("EEEE", Locale.CHINA);
+        return sdf.format(new Date());
     }
 }

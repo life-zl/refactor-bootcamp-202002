@@ -3,7 +3,6 @@ package cc.xpbootcamp.warmup.cashier;
 import cc.xpbootcamp.warmup.cashier.utils.DateUtil;
 
 import java.text.DecimalFormat;
-import java.util.Calendar;
 
 import static cc.xpbootcamp.warmup.cashier.constants.FieldConstant.*;
 
@@ -49,7 +48,7 @@ public class OrderReceipt {
         StringBuilder footer = new StringBuilder();
         footer.append("------------------\n");
         footer.append(TOTAL_TAX_TEXT).append(EMPTY_STRING).append(df.format(order.getTotalSalesTax())).append("\n");
-        if (DateUtil.getWeekOfDate(Calendar.getInstance()).equals(WEDNESDAY)) {
+        if (DateUtil.getWeekOfDate().equals(WEDNESDAY)) {
             footer.append(TOTAL_DISCOUNT_TEXT).append(EMPTY_STRING).append(df.format(order.getTotalDiscount())).append("\n");
             footer.append(TOTAL_AMOUNT_TEXT).append(EMPTY_STRING).append(df.format(order.getTotalAmountWithDiscount()));
         } else {
