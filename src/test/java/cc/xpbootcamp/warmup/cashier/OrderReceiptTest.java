@@ -28,6 +28,37 @@ public class OrderReceiptTest {
         assertThat(output, containsString("====== 老王超市,值得信赖 ======"));
     }
 
+    @Test
+    public void shouldPrintBodyWithNoDiscount() {
+        List<LineItem> lineItemItem = new ArrayList<LineItem>() {{
+            add(new LineItem("巧克力", 21.50, 2));
+            add(new LineItem("小白菜", 10.00, 1));
+        }};
+        PowerMockito.mockStatic(DateUtil.class);
+        PowerMockito.when(DateUtil.getWeekOfDate()).thenReturn("星期四");
+        OrderReceipt receipt = new OrderReceipt(new Order(lineItemItem));
+
+        String output = receipt.printReceipt();
+        System.out.println(output);
+
+        assertThat(output, containsString("巧克力, 21.50 X 2, 43.00"));
+        assertThat(output, containsString("小白菜, 10.00 X 1, 10.00"));
+    }
+
+
+    @Test
+    public void shouldPrintSplitLineWithDiscount() {
+        List<LineItem> lineItemItem = new ArrayList<LineItem>() {{
+        }};
+        PowerMockito.mockStatic(DateUtil.class);
+        PowerMockito.when(DateUtil.getWeekOfDate()).thenReturn("星期四");
+        OrderReceipt receipt = new OrderReceipt(new Order(lineItemItem));
+
+        String output = receipt.printReceipt();
+
+        assertThat(output, containsString("------------------"));
+    }
+
 
     @Test
     public void shouldPrintOrderListWithNoDiscount() {
